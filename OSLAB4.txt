@@ -1,0 +1,127 @@
+author: muhammad ahsan
+
+TASK 1: TO SEE WHICH PROCESS IS RUNNING FIRST (PARENT OR CHILD)
+ 
+	#include<stdio.h>
+	#include<unistd.h>
+ 	
+	void main(){
+	int output=fork();
+	if(output==0){
+	for(int i=0;i<5;i++){
+	printf("\n Printed from child %d",getpid());
+	}
+	}
+	else{
+	for(int i=0;i<5;i++){
+	printf("\n Printed from parent %d",getpid());
+	}
+	}
+	}
+
+TASK 2: TO ADD AN INPUT STATEMENT IN THE PARENT PROCESS 
+
+	nano task2.c
+	#include<stdio.h>
+	#include<unistd.h>
+ 	
+	void main(){
+	int outputTwo;
+	int output=fork();
+	if(output==0){
+	for(int i=0;i<5;i++){
+	printf("\n Printed from child %d",getpid());
+	}
+	}
+	else{
+	printf("Enter a number:");
+	scanf("%d",&outputTwo);
+	for(int i=0;i<5;i++){
+	printf("\n Printed from parent %d",getpid());
+	}
+	}
+	}
+
+TASK 3a: PARENT PROCESS SHOULD PRINT NUMBERS FROM 6-10 WHILE CHILD SHOULD PRINT 1-5 NUMBERS
+
+
+	nano task2.c
+
+	#include<stdio.h>
+	#include<unistd.h>
+ 	
+	void main(){
+	int output=fork();
+	if(output==0){
+	for(int i=1;i<=10;i++){
+	printf("\n %d",i);
+	}
+	}
+	else{
+	wait();
+	for(int i=6;i<=10;i++){
+	printf("\n %d",i);
+	}
+	}
+	}
+
+TASK 3b: PARENT PROCESS SHOULD PRINT NUMBERS FROM 6-10 WHILE CHILD SHOULD PRINT 1-5 NUMBERS (USING SINGLE LOOP)
+
+	#include<stdio.h>
+	#include<unistd.h>
+ 	
+	void main(){
+	int output=fork();
+	int j;
+	if(output==0){
+	j=1;
+	}
+	else{
+	wait();
+	j=6;
+	}
+	for(int i=j;i<5+j;i++){
+	printf("Printed from %d , %d \n",getpid(),i);
+	}
+	}
+	
+
+
+TASK 4: WRITE A PROGRAM WHICH TAKES AGE INPUT IN CHILD AND DETERMINES IF THE AGE IS ABOVE 18 OR NOT AND IN THE PARENT TAKE TWO NUMBERS AND CALCULATE THEIR SUM
+
+nano task4.c
+
+	#include<stdio.h>
+	#include<unistd.h>
+ 	
+	void main(){
+	int output=fork();
+	int age;
+	int num1;
+	int num2;
+	if(output==0){
+	printf("\n Enter Age:");
+	scanf("%d",&age);
+	if(age>18){
+	printf("\n Age is above 18");
+	}
+	else{
+	printf("\n Age is below 18");
+	}
+	}
+	else{
+	wait();
+	printf("\n Enter Number 1:");
+	scanf("%d",&num1);
+	printf("\n Enter Number 2:");
+	scanf("%d",&num2);
+	printf("\n Sum=%d",num1+num2);
+	}
+	}
+
+--TO GET PROCESSES INFO FROM TERMINAL
+
+ps -a 
+
+	
+
